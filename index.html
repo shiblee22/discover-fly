@@ -110,13 +110,15 @@
 
         <!--Thank You-->
         <script>
+            //Function to read the no. of ticket
             function getTicketNo(ticket) {
                 const ticketInput = document.getElementById(ticket).value;
                 const ticketNo = parseInt(ticketInput);
                 return ticketNo;
             }
 
-            function calculateBillAmounts() {
+            //Function to calculate and update bill amounts
+            function updateBillAmounts() {
                 const firstClassNo = getTicketNo('first-class-no');
                 const economyNo = getTicketNo('economy-no');
 
@@ -130,6 +132,7 @@
                 document.getElementById('total-amount').innerText = '$' + totalAmount;
             }
 
+            //Function to handle the change of ticket no.
             function handleTicketNoChange(ticket, isIncrease) {
                 const ticketNo = getTicketNo(ticket);
                 let newTicketNo = ticketNo;
@@ -141,9 +144,10 @@
                 }
 
                 document.getElementById(ticket).value = newTicketNo;
-                calculateBillAmounts();
+                updateBillAmounts();
             }
 
+            //Function to show feedback after submission
             function showFeedback() {
                 const firstClassNo = getTicketNo("first-class-no");
                 const economyNo = getTicketNo("economy-no");
@@ -156,6 +160,7 @@
                 } else {
                     alert(`Congratulations! Your Flight is Booked.\nBooking Summary :\nNo. of first class = ${firstClassNo}.\nNo. of economy class = ${economyNo}.\nSubtotal = $${subTotal}.\nTax = $${tax}.\nTotal = $${totalAmount}.`);
 
+                    //Updating all values to zero after successful booking
                     document.getElementById("first-class-no").value = 0;
                     document.getElementById("economy-no").value = 0;
                     document.getElementById('subtotal-amount').innerText = '$000';
